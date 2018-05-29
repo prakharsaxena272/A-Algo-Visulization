@@ -1,0 +1,156 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+  <script language="javascript" type="text/javascript" src="libraries/p5.dom.js"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <script src="jquerycycle.js" type="text/javascript"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+<style type="text/css">
+  
+body
+{
+  background-image: url("b.jpg");
+  background-attachment: fixed;
+   background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+blink {
+    -webkit-animation: 1s linear infinite condemned_blink_effect; // for android
+    animation: 1s linear infinite condemned_blink_effect;
+}
+@-webkit-keyframes condemned_blink_effect { // for android
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+@keyframes condemned_blink_effect {
+    0% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: hidden;
+    }
+    100% {
+        visibility: visible;
+    }
+}
+.img
+  {
+    width: 100%;
+  height: auto;
+  border-radius: 50px;
+    display: block;
+    opacity: 1;
+    transition: .5s ease;
+  backface-visibility: hidden;
+  }
+  .text
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50px;
+  background-color: brown;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  transition: .5s ease;
+  opacity: 0;
+}
+.img:hover 
+{
+  opacity: 0.4;
+}
+.text:hover{
+  opacity: 0.6;
+}
+
+#flip1,#flip2
+{
+  background: white; 
+  box-shadow: 0 10px 30px ;
+   font-size: 28px; 
+   font-weight: bold;
+   opacity: 0.8;
+   border-radius: 12px;
+}
+#flip1:hover,#flip2:hover
+{
+  background-color: blue;
+  color: white;
+}
+</style>
+</head>
+<body >
+  <div >
+<p style="color: red; font-size:89px; margin-left: 320px; margin-top: 260px; font-weight:bold; text-shadow: 25px #000000; font-family: 'Tangerine', serif; "> A* Algorithm Path Finder </p>
+</div>
+<br><br><br><br><br><br><br><br>
+<div style="width:90%; /* border: 10px solid;*/ background: transparent; box-shadow: 5px 5px 10px 10px ; color: white; " class="container">
+  <u><h3>A* Star Algorithm </h3></u><br>
+  <center>
+  <p style="width: 90%; text-align: justify;  font-size: 20px; ">A* (pronounced as "A star") is a computer algorithm that is widely used in pathfinding and graph traversal, the process of plotting an efficiently directed path between multiple points, called "nodes". It enjoys widespread use due to its performance and accuracy. However, in practical travel-routing systems, it is generally outperformed by algorithms which can pre-process the graph to attain better performance, although other work has found A* to be superior to other approaches.</p>
+  </center>
+  <p style="width: 90%; text-align: justify;  font-size: 20px; ">
+  At each iteration of its main loop, A* needs to determine which of its partial paths to expand into one or more longer paths. It does so based on an estimate of the cost (total weight) still to go to the goal node. Specifically, A* selects the path that minimizes
+  <br><br><br>
+  {\displaystyle f(n)=g(n)+h(n)} f(n)=g(n)+h(n)
+  where n is the last node on the path, g(n) is the cost of the path from the start node to n, and h(n) is a heuristic that estimates the cost of the cheapest path from n to the goal. The heuristic is problem-specific. For the algorithm to find the actual shortest path, the heuristic function must be admissible, meaning that it never overestimates the actual cost to get to the nearest goal node.
+<br><br><br>
+Typical implementations of A* use a priority queue to perform the repeated selection of minimum (estimated) cost nodes to expand. This priority queue is known as the open set or fringe. At each step of the algorithm, the node with the lowest f(x) value is removed from the queue, the f and g values of its neighbors are updated accordingly, and these neighbors are added to the queue. The algorithm continues until a goal node has a lower f value than any node in the queue (or until the queue is empty).[a] The f value of the goal is then the length of the shortest path, since h at the goal is zero in an admissible heuristic.
+<br><br><br>
+The algorithm described so far gives us only the length of the shortest path. To find the actual sequence of steps, the algorithm can be easily revised so that each node on the path keeps track of its predecessor. After this algorithm is run, the ending node will point to its predecessor, and so on, until some node's predecessor is the start node.
+<br><br><br>
+As an example, when searching for the shortest route on a map, h(x) might represent the straight-line distance to the goal, since that is physically the smallest possible distance between any two points.
+<br><br><br>
+If the heuristic h satisfies the additional condition h(x) ≤ d(x, y) + h(y) for every edge (x, y) of the graph (where d denotes the length of that edge), then h is called monotone, or consistent. In such a case, A* can be implemented more efficiently—roughly speaking, no node needs to be processed more than once (see closed set below)—and A* is equivalent to running Dijkstra's algorithm with the reduced cost d'(x, y) = d(x, y) + h(y) − h(x).
+</p>
+
+</div>
+
+<div style="margin-top: 80px;  ">
+  <center>
+<a href="algo.html">  <button id="flip1" style="" onclick="algo.hmtl"><blink>Project Tour </blink> </button></a>
+</center>
+</div>
+<div style="margin-top: 80px;  ">
+  <center>
+<a href="algo.html">  <button id="flip1" style="" onclick="algo1.hmtl"><blink>With Diagonal (8 neighbours) </blink> </button></a>
+</center>
+</div>
+ 
+
+<div style="margin-top: 80px;  ">
+  <center>
+<a href="algo2.html">  <button id="flip1" style="" onclick="algo2.hmtl"><blink>Jaypee Visualizers (8 neighbours) </blink> </button></a>
+</center>
+</div>
+<!-- <p style="font-size: 28px; color: white;"> Made By :-  </p> -->
+
+
+
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+      <script>
+          AOS.init();
+        </script>
+
+</body>
+</html>
